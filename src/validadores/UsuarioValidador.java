@@ -10,24 +10,28 @@ import excepciones.UsuarioException;
 
 public class UsuarioValidador {
     public static void validar(int dni, String nombre, String userName, String pass, int nivelPermisos) throws UsuarioException {
-        if(dni <= 10000) {
-            throw new UsuarioException("Error de validación modelos.Usuario: dni fuera de rango.");
-        }
-
         if(nombre.isBlank()) {
-            throw new UsuarioException("Error de validación modelos.Usuario: Nombre de usuario en blanco.");
+            throw new UsuarioException("Error de validación Usuario: Nombre de usuario en blanco.");
         }
 
         if(userName.isBlank()) {
-            throw new UsuarioException("Error de validación modelos.Usuario: UserName en blanco.");
+            throw new UsuarioException("Error de validación Usuario: UserName en blanco.");
         }
 
         if(!checkNivel(nivelPermisos)) {
-            throw new UsuarioException("Error de validación modelos.Usuario: Perfil no existe");
+            throw new UsuarioException("Error de validación Usuario: Perfil no existe");
         }
 
         if(pass.length() < 6 || pass.isBlank()) {
-            throw new UsuarioException("Error de validación modelos.Usuario: Contraseña no cumple con los requisitos.");
+            throw new UsuarioException("Error de validación Usuario: Contraseña no cumple con los requisitos.");
+        }
+
+        validarDni(dni);
+    }
+
+    public static void validarDni(int dni) throws UsuarioException {
+        if(dni <= 1000) {
+            throw new UsuarioException("Error de validación Usuario: dni fuera de rango.");
         }
     }
 
