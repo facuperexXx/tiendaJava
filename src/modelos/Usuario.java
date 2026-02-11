@@ -1,6 +1,7 @@
 /*
     Notas de desarrollo:
         - El id del contructor debe cambiarse para que trabaje con el contenedor.
+        - Definir logica para obtener saldo y crear cuenta para clientes.
 
     Notas de uso:
     Para crear un modelos.Usuario, usar la clase interna Builder. Enviar datos aca y esta llamara un validador para
@@ -14,8 +15,12 @@
 package modelos;
 
 import enumerables.AccesoPerfil;
+import excepciones.SaldoCuentaException;
 import excepciones.UsuarioException;
+import validadores.SaldoCuentaValidador;
 import validadores.UsuarioValidador;
+
+import javax.security.sasl.Sasl;
 
 public class Usuario {
     private final int id;
@@ -24,6 +29,7 @@ public class Usuario {
     private String userName;
     private String password;
     private AccesoPerfil permisos;
+    private SaldoCuenta saldo;  // Sin usar. Pendiente para cuando hayan contenedor con datos.
 
     private Usuario(int id) {
         this.id = id;
@@ -51,6 +57,10 @@ public class Usuario {
 
     public int getId() {
         return id;
+    }
+
+    public SaldoCuenta getSaldo() {
+        return saldo;
     }
 
     public Usuario setNombre(String nombre) {
@@ -84,9 +94,18 @@ public class Usuario {
         return this;
     }
 
+    public Usuario setSaldoCuenta(SaldoCuenta saldo) {
+        this.saldo = saldo;
+        return this;
+    }
+
     @Override
     public String toString() {
-        return "#" + id + " [ Nombre: " + nombre + " - DNI: " + dni + " - modelos.Usuario: " + userName + " - Pass: "
+        if(permisos == AccesoPerfil.CLIENTE) {
+            return "#" + id + " [ Nombre: " + nombre + " - DNI: " + dni + " - Username: " + userName + " - Pass: "
+                    + password + " - Permisos: " + permisos.getPermiso() + " | " + saldo.toString() + " ]";
+        }
+        return "#" + id + " [ Nombre: " + nombre + " - DNI: " + dni + " - Username: " + userName + " - Pass: "
                 + password + " - Permisos: " + permisos.getPermiso() + " ]";
     }
 
@@ -123,16 +142,28 @@ public class Usuario {
             return this;
         }
 
-        public Usuario build() throws UsuarioException {
-                UsuarioValidador.validar(dni, nombre, userName, password, nivelPermisos);
+        public Usuario build() throws UsuarioException, SaldoCuentaException {
+            UsuarioValidador.validar(dni, nombre, userName, password, nivelPermisos);
 
-                // Recordatorio: el id debe calcularse segun los registros del inventario (contenedor)
-                return new Usuario(1)
-                        .setNombre(nombre)
-                        .setDni(dni)
-                        .setUserName(userName)
-                        .setPassword(password)
-                        .setPermisos(nivelPermisos);
+            // Recordatorio: el id debe calcularse segun los registros del inventario (contenedor)
+            Usuario nuevo = new Usuario(1)
+                    .setNombre(nombre)
+                    .setDni(dni)
+                    .setUserName(userName)
+                    .setPassword(password)
+                    .setPermisos(nivelPermisos);
+
+            if(nivelPermisos == AccesoPerfil.CLIENTE.getNivel()) {
+                // Crear cuenta de saldo en caso de ser cliente.
+                SaldoCuenta cuenta = new SaldoCuenta.Builder()
+                        .setDniVinculado(dni)
+                        .setDinero(0.0)
+                        .build();
+
+                nuevo.setSaldoCuenta(cuenta);
+            }
+
+            return nuevo;
         }
     }
 }
