@@ -1,6 +1,7 @@
 package modelos;
 
 import excepciones.SaldoCuentaException;
+import excepciones.UsuarioException;
 import validadores.SaldoCuentaValidador;
 
 public class SaldoCuenta {
@@ -32,12 +33,12 @@ public class SaldoCuenta {
 
     @Override
     public String toString() {
-        return "Saldo [ $" + dineroDisponible + " ]";
+        return "Saldo: $" + dineroDisponible;
     }
 
     public static class Builder {
         private int dniVinculado;
-        private Double dinero;
+        private Double dinero = 0.0;
 
         public Builder setDniVinculado(int dniVinculado) {
             this.dniVinculado = dniVinculado;
@@ -49,7 +50,7 @@ public class SaldoCuenta {
             return this;
         }
 
-        public SaldoCuenta build() throws SaldoCuentaException {
+        public SaldoCuenta build() throws SaldoCuentaException, UsuarioException {
             SaldoCuentaValidador.validar(dniVinculado, dinero);
             return new SaldoCuenta(dniVinculado, dinero);
         }
