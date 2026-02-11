@@ -1,7 +1,7 @@
 package modelos;
 
 import excepciones.ArticuloException;
-import validadores.ArticuloSeleccionadoValildador;
+import validadores.ArticuloSeleccionadoValidador;
 
 public class ArticuloSeleccionado {
     private int cantidadSeleccionada;
@@ -58,7 +58,7 @@ public class ArticuloSeleccionado {
         }
 
         public ArticuloSeleccionado build() throws ArticuloException {
-            ArticuloSeleccionadoValildador.validar(codigo, cantidadSeleccionada);
+            ArticuloSeleccionadoValidador.validar(codigo, cantidadSeleccionada);
             return new ArticuloSeleccionado(codigo, cantidadSeleccionada);
         }
     }
