@@ -43,6 +43,19 @@ public class VentaExitosa {
         return this;
     }
 
+    @Override
+    public String toString() {
+        String resumenCompra = "\n *** Resumen de compra ***";
+
+        for(ArticuloSeleccionado item : listaProductos) {
+            resumenCompra += "\n " + item.toString();
+        }
+
+        resumenCompra += "\n Total: $" + totalCompra;
+
+        return resumenCompra;
+    }
+
     public static class Builder {
         private List<ArticuloSeleccionado> listaProductos;
         private int idCliente;
@@ -73,5 +86,4 @@ public class VentaExitosa {
 
         }
     }
-
 }
