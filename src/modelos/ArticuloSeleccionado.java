@@ -2,7 +2,6 @@ package modelos;
 
 import excepciones.ArticuloException;
 import validadores.ArticuloSeleccionadoValildador;
-import validadores.ArticuloStockValidador;
 
 public class ArticuloSeleccionado {
     private int cantidadSeleccionada;
