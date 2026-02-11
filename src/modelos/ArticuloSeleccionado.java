@@ -8,7 +8,7 @@ public class ArticuloSeleccionado {
     private Double subtotal;
     private ArticuloStock seleccionado;
 
-    public ArticuloSeleccionado(int codigo, int cantidad) throws ArticuloException {
+    private ArticuloSeleccionado(int codigo, int cantidad) throws ArticuloException {
         this.cantidadSeleccionada = cantidad;
         this.seleccionado = new ArticuloStock.Builder()
                 .setProducto("Fideos")

@@ -17,10 +17,7 @@ package modelos;
 import enumerables.AccesoPerfil;
 import excepciones.SaldoCuentaException;
 import excepciones.UsuarioException;
-import validadores.SaldoCuentaValidador;
 import validadores.UsuarioValidador;
-
-import javax.security.sasl.Sasl;
 
 public class Usuario {
     private final int id;
