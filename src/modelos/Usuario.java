@@ -1,4 +1,8 @@
-package modelos;/*
+/*
+    Notas de desarrollo:
+        - El id del contructor debe cambiarse para que trabaje con el contenedor.
+
+    Notas de uso:
     Para crear un modelos.Usuario, usar la clase interna Builder. Enviar datos aca y esta llamara un validador para
     inconsistencias en la información recibida.
 
@@ -6,6 +10,8 @@ package modelos;/*
 
     Para agregar excepciones, ir a la clase validadores.UsuarioValidador.
  */
+
+package modelos;
 
 import enumerables.AccesoPerfil;
 import excepciones.UsuarioException;
@@ -120,6 +126,7 @@ public class Usuario {
         public Usuario build() throws UsuarioException {
                 UsuarioValidador.validar(dni, nombre, userName, password, nivelPermisos);
 
+                // Recordatorio: el id debe calcularse segun los registros del inventario (contenedor)
                 return new Usuario(1)
                         .setNombre(nombre)
                         .setDni(dni)

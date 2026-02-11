@@ -1,7 +1,9 @@
-package validadores;/*
+/*
     Uso exclusivo de la clase modelos.Usuario.
     Para agregar nuevas validadores, hacerlo en el metodo validar().
  */
+
+package validadores;
 
 import enumerables.AccesoPerfil;
 import excepciones.UsuarioException;
