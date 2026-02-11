@@ -1,5 +1,5 @@
 /*
-    Agregar las valildaciones de articulos aqui.
+    Agregar las validaciones de articulos aqui.
  */
 package validadores;
 
