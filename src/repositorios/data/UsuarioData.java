@@ -5,9 +5,7 @@ import modelos.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-    Precarga de usuarios
- */
+// Precarga de usuarios
 
 public class UsuarioData {
     public static List<Usuario> cargarDatos() {
