@@ -1,3 +1,13 @@
+package modelos;
+
+import enumerables.AccesoPerfil;
+import excepciones.SaldoCuentaException;
+import excepciones.UsuarioException;
+import repositorios.Repositorio;
+import repositorios.UsuarioContenedor;
+import repositorios.data.UsuarioData;
+import validadores.UsuarioValidador;
+
 /*
     Notas de desarrollo:
         - El id del contructor debe cambiarse para que trabaje con el contenedor.
@@ -12,13 +22,6 @@
     Para agregar excepciones, ir a la clase validadores.UsuarioValidador.
  */
 
-package modelos;
-
-import enumerables.AccesoPerfil;
-import excepciones.SaldoCuentaException;
-import excepciones.UsuarioException;
-import validadores.UsuarioValidador;
-
 public class Usuario {
     private final int id;
     private int dni;
@@ -27,6 +30,8 @@ public class Usuario {
     private String password;
     private AccesoPerfil permisos;
     private SaldoCuenta saldo;  // Sin usar. Pendiente para cuando hayan contenedor con datos.
+
+    private static int contadorUsuarios = 0;
 
     private Usuario(int id) {
         this.id = id;
@@ -142,8 +147,9 @@ public class Usuario {
         public Usuario build() throws UsuarioException, SaldoCuentaException {
             UsuarioValidador.validar(dni, nombre, userName, password, nivelPermisos);
 
-            // Recordatorio: el id debe calcularse segun los registros del inventario (contenedor)
-            Usuario nuevo = new Usuario(1)
+            contadorUsuarios++;       // Define id del registro, despues de pasar por el validador.
+
+            Usuario nuevo = new Usuario(contadorUsuarios)
                     .setNombre(nombre)
                     .setDni(dni)
                     .setUserName(userName)
