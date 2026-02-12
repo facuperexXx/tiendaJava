@@ -11,6 +11,10 @@ public abstract class Repositorio<T> {
 
     protected abstract int identificador(T registro);
 
+    public List<T> registros() {
+        return datos;
+    }
+
     // METODOS CRUD
     public void agregar(T nuevo) {
         if(!checkRegistro(identificador(nuevo))) {
