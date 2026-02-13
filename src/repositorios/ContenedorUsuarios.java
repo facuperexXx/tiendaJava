@@ -4,16 +4,16 @@ import excepciones.UsuarioException;
 import modelos.Usuario;
 import repositorios.data.UsuarioData;
 
-public class UsuarioContenedor extends Repositorio<Usuario> {
-    private static UsuarioContenedor singleton;
+public class ContenedorUsuarios extends Repositorio<Usuario> {
+    private static ContenedorUsuarios singleton;
 
-    private UsuarioContenedor() throws UsuarioException {
+    private ContenedorUsuarios() throws UsuarioException {
         datos = UsuarioData.cargarDatos();
     }
 
-    public static UsuarioContenedor getSingleton() throws UsuarioException {
+    public static ContenedorUsuarios getSingleton() throws UsuarioException {
         if(singleton == null) {
-            singleton = new UsuarioContenedor();
+            singleton = new ContenedorUsuarios();
         }
         return singleton;
     }
