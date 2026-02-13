@@ -7,6 +7,8 @@ public class ArticuloStock extends Articulo {
     private Double precioUnitario;
 
     private ArticuloStock(String nombre, int stockDisponible, Double precioUnitario) throws ArticuloException {
+        super(contadorArticulos);
+
         this.producto = nombre;
         this.stockDisponible = stockDisponible;
         this.precioUnitario = precioUnitario;
@@ -47,6 +49,9 @@ public class ArticuloStock extends Articulo {
 
         public ArticuloStock build() throws ArticuloException {
             ArticuloStockValidador.validar(producto, stockDisponible, precioUnitario);
+
+            contadorArticulos++;
+
             return new ArticuloStock(producto, stockDisponible, precioUnitario);
         }
     }

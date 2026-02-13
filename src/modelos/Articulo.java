@@ -1,13 +1,13 @@
 package modelos;
 
 public abstract class Articulo {
-    protected int id;
+    protected final int id;
     protected String producto;
     protected int stockDisponible;
 
-    protected Articulo() {}
+    protected static int contadorArticulos = 0;
 
-    private Articulo(int id) {
+    protected Articulo(int id) {
         this.id = id;
     }
 
