@@ -3,9 +3,6 @@ package modelos;
 import enumerables.AccesoPerfil;
 import excepciones.SaldoCuentaException;
 import excepciones.UsuarioException;
-import repositorios.Repositorio;
-import repositorios.UsuarioContenedor;
-import repositorios.data.UsuarioData;
 import validadores.UsuarioValidador;
 
 /*
@@ -96,9 +93,8 @@ public class Usuario {
         return this;
     }
 
-    public Usuario setSaldoCuenta(SaldoCuenta saldo) {
+    public void setSaldoCuenta(SaldoCuenta saldo) {
         this.saldo = saldo;
-        return this;
     }
 
     @Override
