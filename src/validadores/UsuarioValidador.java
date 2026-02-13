@@ -36,7 +36,7 @@ public class UsuarioValidador {
     }
 
     private static boolean checkNivel(int nivel) {
-        Boolean check = false;
+        boolean check = false;
 
         for(AccesoPerfil a : AccesoPerfil.values()) {
             if(nivel == a.getNivel()) {
