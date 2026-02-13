@@ -1,16 +1,17 @@
 package repositorios;
 
+import excepciones.UsuarioException;
 import modelos.Usuario;
 import repositorios.data.UsuarioData;
 
 public class UsuarioContenedor extends Repositorio<Usuario> {
     private static UsuarioContenedor singleton;
 
-    private UsuarioContenedor() {
+    private UsuarioContenedor() throws UsuarioException {
         datos = UsuarioData.cargarDatos();
     }
 
-    public static UsuarioContenedor getSingleton() {
+    public static UsuarioContenedor getSingleton() throws UsuarioException {
         if(singleton == null) {
             singleton = new UsuarioContenedor();
         }

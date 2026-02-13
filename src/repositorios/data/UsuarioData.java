@@ -1,5 +1,6 @@
 package repositorios.data;
 
+import excepciones.UsuarioException;
 import modelos.Usuario;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 // Precarga de usuarios
 
 public class UsuarioData {
-    public static List<Usuario> cargarDatos() {
+    public static List<Usuario> cargarDatos() throws UsuarioException {
         List<Usuario> listado = new ArrayList<>();
 
         try {
@@ -41,7 +42,7 @@ public class UsuarioData {
             listado.add(u3);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new UsuarioException(e.getMessage());
         }
 
         return listado;
