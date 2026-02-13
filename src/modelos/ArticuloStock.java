@@ -7,13 +7,8 @@ public class ArticuloStock extends Articulo {
     private Double precioUnitario;
 
     private ArticuloStock(String nombre, int stockDisponible, Double precioUnitario) throws ArticuloException {
-        Articulo art = new Articulo.Builder()
-                .setStockDisponible(stockDisponible)
-                .setProducto(nombre)
-                .build();
-
-        this.setProducto(art.getProducto());
-        this.setStockDisponible(art.getStockDisponible());
+        this.producto = nombre;
+        this.stockDisponible = stockDisponible;
         this.precioUnitario = precioUnitario;
     }
 
@@ -27,7 +22,7 @@ public class ArticuloStock extends Articulo {
 
     @Override
     public String toString() {
-        return "#" + id + " [ " + producto + " | Precio x unidad: " + precioUnitario + " - Stock: " + stockDisponible + " ]";
+        return "#" + id + " [ " + producto + " | Precio x unidad: $" + precioUnitario + " - Stock: " + stockDisponible + " ]";
     }
 
     public static class Builder {

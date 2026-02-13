@@ -1,9 +1,6 @@
 package modelos;
 
-import excepciones.ArticuloException;
-import validadores.ArticuloValidador;
-
-public class Articulo {
+public abstract class Articulo {
     protected int id;
     protected String producto;
     protected int stockDisponible;
@@ -39,29 +36,5 @@ public class Articulo {
     @Override
     public String toString() {
         return "#" + id + " [ " + producto + " | Stock: " + stockDisponible + " ]";
-    }
-
-    public static class Builder {
-        private String producto;
-        private int stockDisponible;
-
-        public Builder setProducto(String producto) {
-            this.producto = producto;
-            return this;
-        }
-
-        public Builder setStockDisponible(int stockDisponible) {
-            this.stockDisponible = stockDisponible;
-            return this;
-        }
-
-        public Articulo build() throws ArticuloException {
-            ArticuloValidador.validar(producto, stockDisponible);
-
-            // Recordatorio: asociar id a la base de datos.
-            return new Articulo(1)
-                    .setProducto(producto)
-                    .setStockDisponible(stockDisponible);
-        }
     }
 }
