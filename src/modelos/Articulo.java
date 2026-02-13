@@ -11,7 +11,7 @@ public abstract class Articulo {
         this.id = id;
     }
 
-    protected  int getId() {
+    public int getId() {
         return this.id;
     }
 
