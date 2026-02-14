@@ -16,6 +16,10 @@ public class VentaExitosa {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public List<ArticuloSeleccionado> getListaProductos() {
         return listaProductos;
     }
@@ -71,8 +75,12 @@ public class VentaExitosa {
             return this;
         }
 
-        public Builder setTotalCompra(Double totalCompra) {
-            this.totalCompra = totalCompra;
+        public Builder setTotalCompra() {
+            totalCompra = 0.0;
+            for(ArticuloSeleccionado s : listaProductos) {
+                totalCompra += s.getSubtotal();
+            }
+
             return this;
         }
 
