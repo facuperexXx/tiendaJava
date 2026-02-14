@@ -1,6 +1,8 @@
 package modelos;
 
 import excepciones.ArticuloException;
+import repositorios.ContenedorArticulos;
+import repositorios.Repositorio;
 import validadores.ArticuloSeleccionadoValidador;
 
 public class ArticuloSeleccionado {
@@ -9,12 +11,10 @@ public class ArticuloSeleccionado {
     private ArticuloStock seleccionado;
 
     private ArticuloSeleccionado(int codigo, int cantidad) throws ArticuloException {
+        Repositorio<ArticuloStock> repo = ContenedorArticulos.getSingleton();
+
         this.cantidadSeleccionada = cantidad;
-        this.seleccionado = new ArticuloStock.Builder()
-                .setProducto("Fideos")
-                .setPrecioUnitario(5.0)
-                .setStockDisponible(5)
-                .build();       // Esta harcodeado. Usar parametro codigo para buscar y asignar con el contenedor.
+        this.seleccionado = repo.buscar(codigo);
 
         this. subtotal = getSubtotal();
     }
