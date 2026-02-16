@@ -1,0 +1,34 @@
+package comunicacion.enumerables;
+
+public enum Estado {
+    PENDIENTE(11, "Pendiente", "comunicacion.modelos.Solicitud pendiente"),
+    OK(22, "Realizado", "comunicacion.modelos.Solicitud exitosa"),
+    ERROR(33, "Fallo", "comunicacion.modelos.Solicitud no realizada");
+
+    private final int codigo;
+    private final String estado;
+    private final String descripcion;
+
+    Estado(int codigo, String estado, String descripcion) {
+        this.codigo = codigo;
+        this.estado = estado;
+        this.descripcion = descripcion;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "[ " + codigo + " - Status: " + estado + " - " + descripcion + " ]";
+    }
+}
