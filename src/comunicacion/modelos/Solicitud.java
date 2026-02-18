@@ -2,26 +2,32 @@ package comunicacion.modelos;
 
 import comunicacion.enumerables.Accion;
 import comunicacion.enumerables.Estado;
+import modelos.Usuario;
+
+import java.util.HashMap;
 
 public class Solicitud {
     private final String recurso;
     private final Accion accion;
     private Estado estado = Estado.PENDIENTE;
-    private final String cuerpoSolicitud;
+    private final Usuario usuario;
+    private final HashMap<String, String> cuerpoSolicitud;
 
-    // Contructor para cliente
-    public Solicitud(String recurso, Accion accion,String cuerpo) {
+    // Contructor para mensajes entrantes
+    public Solicitud(String recurso, Accion accion, Usuario user, HashMap<String, String> cuerpo) {
         this.recurso = recurso;
         this.accion = accion;
         this.cuerpoSolicitud = cuerpo;
+        this.usuario = user;
     }
 
-    // Contructor para servidor
-    public Solicitud(String recurso, Accion accion, Estado estado, String cuerpo) {
+    // Contructor para generar Respuesta
+    public Solicitud(String recurso, Accion accion, Estado estado, Usuario user, HashMap<String, String> cuerpo) {
         this.recurso = recurso;
         this.accion = accion;
         this.estado = estado;
         this.cuerpoSolicitud = cuerpo;
+        this.usuario = user;
     }
 
     public void setEstado(Estado estado) {
@@ -40,7 +46,11 @@ public class Solicitud {
         return estado;
     }
 
-    public String getCuerpoSolicitud() {
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+
+    public HashMap<String, String> getCuerpoSolicitud() {
         return cuerpoSolicitud;
     }
 
@@ -49,7 +59,7 @@ public class Solicitud {
         return "**** SOLICITUD ****" +
                 "\n Recurso: " + recurso +
                 "\n Acción: " + accion +
-                "\n comunicacion.enumerables.Estado: " + estado +
+                "\n Estado: " + estado +
                 "\n Cuerpo solicitud: " + cuerpoSolicitud;
     }
 }
