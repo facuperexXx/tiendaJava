@@ -1,9 +1,9 @@
 package comunicacion.enumerables;
 
 public enum Estado {
-    PENDIENTE(11, "Pendiente", "comunicacion.modelos.Solicitud pendiente"),
-    OK(22, "Realizado", "comunicacion.modelos.Solicitud exitosa"),
-    ERROR(33, "Fallo", "comunicacion.modelos.Solicitud no realizada");
+    PENDIENTE(11, "Pendiente", "Solicitud pendiente"),
+    OK(22, "Realizado", "Solicitud exitosa"),
+    ERROR(33, "Fallo", "Solicitud no realizada");
 
     private final int codigo;
     private final String estado;
