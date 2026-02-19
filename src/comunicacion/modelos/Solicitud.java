@@ -2,6 +2,8 @@ package comunicacion.modelos;
 
 import comunicacion.enumerables.Accion;
 import comunicacion.enumerables.Estado;
+import excepciones.SaldoCuentaException;
+import excepciones.UsuarioException;
 import modelos.Usuario;
 
 import java.util.HashMap;
@@ -17,12 +19,22 @@ public class Solicitud {
 
 
     // Contructor para mensajes entrantes
-    public Solicitud(String recurso, Accion accion, int user, HashMap<String, String> cuerpo) {
+    public Solicitud(String recurso, Accion accion, int user, HashMap<String, String> cuerpo) throws UsuarioException, SaldoCuentaException {
         this.recurso = recurso;
         this.accion = accion;
         this.cuerpoSolicitud = cuerpo;
         this.idUser = user;
-        // El endpoint debera verificar usuario y cargarlo.
+
+        // El endpoint debera verificar usuario y cargarlo. Temporalmente queda hardcodeado.
+        Usuario u1 = new Usuario.Builder()
+                .setNombre("Usuario prueba")
+                .setDni(5555555)
+                .setPass("123456")
+                .setUserName("borrar despues")
+                .setPermisos(1)
+                .build();
+
+        this.usuario = u1;
     }
 
     // Contructor para generar Respuesta
