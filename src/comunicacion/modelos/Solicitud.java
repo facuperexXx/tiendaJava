@@ -10,15 +10,19 @@ public class Solicitud {
     private final String recurso;
     private final Accion accion;
     private Estado estado = Estado.PENDIENTE;
-    private final Usuario usuario;
+    private Usuario usuario;
     private final HashMap<String, String> cuerpoSolicitud;
 
+    private final int idUser;
+
+
     // Contructor para mensajes entrantes
-    public Solicitud(String recurso, Accion accion, Usuario user, HashMap<String, String> cuerpo) {
+    public Solicitud(String recurso, Accion accion, int user, HashMap<String, String> cuerpo) {
         this.recurso = recurso;
         this.accion = accion;
         this.cuerpoSolicitud = cuerpo;
-        this.usuario = user;
+        this.idUser = user;
+        // El endpoint debera verificar usuario y cargarlo.
     }
 
     // Contructor para generar Respuesta
@@ -28,6 +32,7 @@ public class Solicitud {
         this.estado = estado;
         this.cuerpoSolicitud = cuerpo;
         this.usuario = user;
+        this.idUser = user.getId();
     }
 
     public void setEstado(Estado estado) {
@@ -50,6 +55,10 @@ public class Solicitud {
         return this.usuario;
     }
 
+    public int getIdUser() {
+        return this.idUser;
+    }
+
     public HashMap<String, String> getCuerpoSolicitud() {
         return cuerpoSolicitud;
     }
@@ -59,6 +68,7 @@ public class Solicitud {
         return "**** SOLICITUD ****" +
                 "\n Recurso: " + recurso +
                 "\n Acción: " + accion +
+                "\n Usuario: " + this.getUsuario() +
                 "\n Estado: " + estado +
                 "\n Cuerpo solicitud: " + cuerpoSolicitud;
     }

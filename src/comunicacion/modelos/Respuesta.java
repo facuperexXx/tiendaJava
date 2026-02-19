@@ -19,6 +19,7 @@ public class Respuesta extends Solicitud {
         return "**** RESPUESTA ****" +
                 "\n Recurso: " + this.getRecurso() +
                 "\n Acción: " + this.getAccion() +
+                "\n Usuario: " + this.getUsuario() +
                 "\n Estado: " + this.getEstado() +
                 "\n Cuerpo solicitud: " + this.getCuerpoSolicitud() +
                 "\n Cuerpo respuesta: " + cuerpoRespuesta;
