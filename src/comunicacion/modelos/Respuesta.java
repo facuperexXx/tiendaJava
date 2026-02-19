@@ -1,16 +1,17 @@
 package comunicacion.modelos;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class Respuesta extends Solicitud {
-    private HashMap<String, String> cuerpoRespuesta;
+public class Respuesta<T> extends Solicitud {
+    private List<T> cuerpoRespuesta;
 
-    public Respuesta(Solicitud peticion, HashMap<String, String> bodyRespuesta) {
+    public Respuesta(Solicitud peticion, List<T> bodyRespuesta) {
         super(peticion.getRecurso(), peticion.getAccion(), peticion.getEstado(), peticion.getUsuario(), peticion.getCuerpoSolicitud());
         this.cuerpoRespuesta = bodyRespuesta;
     }
 
-    public HashMap<String, String> getCuerpoRespuesta() {
+    public List<T> getCuerpoRespuesta() {
         return cuerpoRespuesta;
     }
 
@@ -23,5 +24,7 @@ public class Respuesta extends Solicitud {
                 "\n Estado: " + this.getEstado() +
                 "\n Cuerpo solicitud: " + this.getCuerpoSolicitud() +
                 "\n Cuerpo respuesta: " + cuerpoRespuesta;
+
+
     }
 }
