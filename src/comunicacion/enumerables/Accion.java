@@ -26,4 +26,13 @@ public enum Accion {
     public String toString() {
         return "[ " + codigo + " - " + accion + " ]";
     }
+
+    public static Accion definirAccion(String accion) throws Exception {
+        for(Accion a : Accion.values()) {
+            if(accion.equalsIgnoreCase(a.getAccion())) {
+                return a;
+            }
+        }
+        throw new Exception("Error: Accion no definida.");
+    }
 }
