@@ -17,9 +17,15 @@ package modelos;
 import enumerables.AccesoPerfil;
 import excepciones.SaldoCuentaException;
 import excepciones.UsuarioException;
+import interfaces.iSerializable;
 import validadores.UsuarioValidador;
 
-public class Usuario {
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class Usuario implements iSerializable<Usuario> {
     private final int id;
     private int dni;
     private String nombre;
@@ -103,7 +109,21 @@ public class Usuario {
                     + password + " - Permisos: " + permisos.getPermiso() + " | " + saldo.toString() + " ]";
         }
         return "#" + id + " [ Nombre: " + nombre + " - DNI: " + dni + " - Username: " + userName + " - Pass: "
-                + password + " - Permisos: " + permisos.getPermiso() + " ]";
+                + password + " - Permisos: " + permisos.getNivel() + " ]";
+    }
+
+    @Override
+    public String serializar() {
+        return codificar();
+    }
+
+    private String codificar() {
+        String cadenaFinal = "";
+
+        cadenaFinal = "{id=" + id + ",nombre=" + nombre + ",dni=" + dni + ",perfil=" + permisos.getNivel() + ",saldo=" +
+                saldo.getDineroDisponible() + ",username=" + userName + "}";
+
+        return cadenaFinal;
     }
 
     // Builder de la clase (clase interna)
