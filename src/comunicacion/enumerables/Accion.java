@@ -1,6 +1,8 @@
 package comunicacion.enumerables;
 
-public enum Accion {
+import interfaces.iSerializable;
+
+public enum Accion implements iSerializable<Accion> {
     CREAR(501, "crear"),
     MODIFICAR(502, "modificar"),
     BORRAR(503, "borrar"),
@@ -34,5 +36,10 @@ public enum Accion {
             }
         }
         throw new Exception("Error: Accion no definida.");
+    }
+
+    @Override
+    public String serializar() {
+        return accion;
     }
 }

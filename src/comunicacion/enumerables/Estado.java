@@ -1,6 +1,8 @@
 package comunicacion.enumerables;
 
-public enum Estado {
+import interfaces.iSerializable;
+
+public enum Estado implements iSerializable<Estado> {
     PENDIENTE(11, "Pendiente", "Solicitud pendiente"),
     OK(22, "Realizado", "Solicitud exitosa"),
     ERROR(33, "Fallo", "Solicitud no realizada");
@@ -30,5 +32,10 @@ public enum Estado {
     @Override
     public String toString() {
         return "[ " + codigo + " - Status: " + estado + " - " + descripcion + " ]";
+    }
+
+    @Override
+    public String serializar() {
+        return String.valueOf(codigo);
     }
 }
